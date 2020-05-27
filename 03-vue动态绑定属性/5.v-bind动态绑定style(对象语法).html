@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    在正常的写style都是写死的，无法动态改变style，这里vue使用动态绑定style样式
+   -->
+  	<div id="app">
+      <!-- <h1 :style="{属性名：属性值}"></h1> 
+           属性值如果不是变量必须使用 '' 包裹
+      -->
+      <h1 :style="{backgroundColor:'#abcdef',color:'#fff'}">{{message}}</h1>
+      <!-- 使用变量动态赋值style -->
+      <h1 :style="{backgroundColor:finalBgcolor,color:finalColor}">{{message}}</h1>
+      <!-- 对象太长使用 methods -->
+      <h1 :style="getStyle()">{{message}}</h1>
+      
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:'动态绑定style样式',
+          finalBgcolor:'black',
+          finalColor:'red'
+        },
+        methods: {
+          getStyle(){
+            return {backgroundColor:this.finalBgcolor,color:this.finalColor};
+          }
+        }
+      });
+    </script>
+</body>
+</html>

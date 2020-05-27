@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    笔记：当使用methods执行函数时,每一次执行函数都会执行函数
+         而使用计算属性，当你的数据没有发生改变的情况下不会重新执行函数，而是存在一个缓存。节省性能
+
+         当数据发生改变时，methods会重新执行对应的此时。而computed只会执行一次来更新数据
+   -->
+  	<div id="app">
+      <!-- 使用methods -->
+      <h2 v-for="n in 3">{{getFullName()}}</h2>
+      <!-- 使用computed -->
+      <h2 v-for="n in 3">{{fullName}}</h2>
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          firstName:'Zhang',
+          lastName:'Wenqiong',
+        },
+        methods: {
+          getFullName(){
+            console.log('methods')
+            return this.firstName + " " + this.lastName;
+          }
+        },
+        computed:{
+          fullName(){
+            console.log('computed');
+            
+            return this.firstName + " " + this.lastName;
+          }
+        }
+      });
+    </script>
+</body>
+</html>

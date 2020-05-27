@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+      <!-- 1.修饰符：lazy 
+      在正常情况下每当输入字符都会触发input事件，改变message变量的值。
+      但是在实际情况中，例如输入密码用户名等，只需要回车或者失去焦点改变message的值就可以
+      而vue提供了这个功能，就是lazy修饰符
+      只有当用户回车或失去焦点时改回改变message的值
+      -->
+      <input type="text" v-model.lazy="message">
+      <h2>{{message}}</h2>
+
+      <!-- 2.修饰符：number 
+      默认情况下，在input框输入的无论是字母还是数字都会被转换成字符串类型
+      也就是我们data里面即使绑定的变量时一个数组，但是v-model在input框中输入内容，就会变成字符串
+      如果我们需要data值变成数字类型，就需要写方法对变量进行处理。此时，vue提供了简便方法使用number修饰符
+      -->
+      <input type="text" v-model.number.lazy="age">
+      <h2>{{age}} {{typeof age}}</h2>
+
+      <!-- 3.修饰符：trim 
+      去除data里面左右两边的空格
+      -->
+      <input type="text" v-model.trim="name">
+      <h2>{{name}}</h2>
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:'haha',
+          age:18,
+          name:'zwq'
+        },
+        methods: {}
+      });
+    </script>
+</body>
+</html>

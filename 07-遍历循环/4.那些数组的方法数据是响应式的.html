@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+      <ul>
+        <li v-for="item in letters">{{item}}</li>
+      </ul>
+      <button @click="btnClick">按钮</button>
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          letters:['a','b','c','d']
+        },
+        methods: {
+          btnClick(){
+            // 数组响应式的方法
+
+            // 1.push 可以添加多个
+            // this.letters.push('eee');
+            // this.letters.push('eee','fff','zzz');
+
+            // 2.pop  删除数组中最后一个元素
+            // this.letters.pop();
+
+            // 3.shift  删除数组中第一个元素
+            // this.letters.shift();
+
+            // 4.unshift  在数组最前面添加元素 可以添加多个
+            // this.letters.unshift('111')
+
+            // 5.splice 删除/插入/替换  参数：开始的位置  要删除的位数  要添加的值
+            // 如果只传入一个参数（开始位置）就会把从开始位置往后的值全部删掉
+            // this.letters.splice(2);
+            // this.letters.splice(2,this.letters.length - 2);
+            // this.letters.splice(2,2,'!!','@@');
+            // this.letters.splice(2,0,'13','45')
+
+            // 6.sort  参数可以传入函数
+            // this.letters.sort();
+
+            // 7.reverse
+            // this.letters.reverse();
+
+            // 注意：通过索引值修改数组中的元素不是响应式的，不会重新渲染dom ,因为Vue没有对这种方法进行监听
+            // this.letters[0] = '###';
+
+            // 用下面这种方式    方式1
+            // this.letters.splice(0,1,'###');
+            
+            // 方式2 Vue内部实现的函数
+            // Vue.set(要修改的对象，索引值，修改厚=后的值)
+            Vue.set(this.letters,0,'###')
+          },
+          
+        }
+      });
+    </script>
+</body>
+</html>

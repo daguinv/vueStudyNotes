@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    作用域插槽：父组件替换插槽的标签，但是内容由子组件来提供
+
+   -->
+  	<div id="app">
+      <cpn></cpn>
+      <cpn>
+        <!-- 子组件是不能直接访问父组件的数据的 -->
+        <!-- <span v-for="item in Language">{{item}}</span> -->
+        <!-- 这里使用插槽作用域  在2.5之前的版本中，需要在外层包裹一个template标签。2.5之后可以随便写标签-->
+        <template slot-scope="slot">
+          <!-- <span v-for="item in slot.data">{{item}}</span> -->
+          <span>{{slot.data.join('--')}}</span>
+        </template>
+      </cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <slot :data="Language">
+          <ul>
+            <li v-for="item in Language">{{item}}</li>
+          </ul>
+        </slot>
+        
+      </div>
+    </template>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        components:{
+          cpn:{
+            template:'#cpn',
+            data(){
+              return {
+                Language:['JavaScript','java','python','c++']
+              }
+            }
+          }
+        }
+      });
+    </script>   
+</body>
+</html>

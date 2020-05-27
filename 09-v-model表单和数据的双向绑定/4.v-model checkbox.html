@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- checkbox单选框
+      这里的有一个默认的value值，当选中是true，没选是false
+      -->
+    <label for="agreement">
+      <input type="checkbox" id="agreement" v-model="isAgree">同意协议
+      <h2>你选择的是{{isAgree}}</h2>
+      <button :disabled="!isAgree">下一步</button>
+    </label>
+
+
+
+    <input type="checkbox" value="篮球" v-model="hobbies">篮球
+    <input type="checkbox" value="足球" v-model="hobbies">足球
+    <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
+    <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+    <h2>你选择的是{{hobbies}}</h2>
+
+
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isAgree: false,  //单选框对应的是布尔值
+        hobbies:[],      //多选框对应的是数组  当选中把value值添加到数组中，取消选中将value值从数组中移除
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

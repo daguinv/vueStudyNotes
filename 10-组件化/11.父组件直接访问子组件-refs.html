@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    笔记：有时候我们需要父组件直接访问子组件，子组件直接访问父组件，或者子组件访问根组件
+    父组件访问子组件：使用 $children 或 $refs 
+    子组件访问父组件：使用 $parent
+
+    一般情况下，父组件访问子组件时，使用$refs  他默认返回一个空对象。
+    当我们的组件加上ref属性时，会把ref作为组件的唯一标识（key）通过这个标识找到这个组件，
+
+    而使用children我们都是返回所有组件时，才使用，其他情况下，一般不使用
+   -->
+  	<div id="app">
+      <cpn></cpn>
+      <cpn ref="aaa"></cpn>
+      <cpn ref="bbb"></cpn>
+      <button @click="clickBtn">按钮</button>
+    </div>
+
+    <template id="cpn">
+      <div>
+        我是子组件
+      </div>
+    </template>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+          clickBtn(){
+            // this.$children 保存的是包含一个子组件的数组。
+            // 数组的中每一位是一个子组件对象，可以直接调用子组件的data，methods等
+            // console.log(this.$children);
+            // for(let i of this.$children){
+            //   console.log(i.message,i.showMessage());
+            // }
+            // 默认情况下返回一个空对象。当组件上绑定ref属性，会把带ref属性的组件放入对象中
+            console.log(this.$refs.aaa.message);
+            
+          }
+        },
+        components:{
+          cpn:{
+            template:'#cpn',
+            data(){
+              return {
+                message:'i am child'
+              }
+            },
+            methods:{
+              showMessage(){
+                console.log(this.message);
+                return 'haha'
+              }
+            }
+          }
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+        <!-- 这样的代码逻辑很长，不好维护 -->
+        <h2>总价格{{books[0].price + books[1].price + books[2].price}}</h2>
+        <!-- 使用计算属性 -->
+        <h2>总价格{{allPrices}}</h2>
+    </div>
+    
+    <script src="../vue.js"></script>
+    <script>
+
+      /*
+        计算属性在多次调用时只会调用一次，而使用methods调用几次执行几次，methods是没有缓存的，性能比计算属性低
+      */
+      const app = new Vue({
+        el: '#app',
+        data: {
+          books:[
+            // 下面是老师推荐的非常经典的书
+            {id:01,name:'代码大全',price:100},
+            {id:02,name:'深入计算机原理',price:98},
+            {id:03,name:'现在操作系统',price:105},
+          ]
+        },
+        computed:{
+          allPrices(){
+            //使用数组reduce
+            // 妈呀使用reduce到底怎么写，写不出来。
+
+              // const result =  this.books.reduce(function(prev,cur){
+              //   let con = prev + cur.price;
+
+              // })
+            // let result = 0;
+            // for(let i = 0; i < this.books.length; i++){
+            //   result += this.books[i].price
+            // }
+
+            // Es6遍历语法
+
+            // for(let i in this.books){
+            //   console.log(i);
+            // }
+            // for(let i of this.books){
+            //   console.log(i.price);
+              
+            // }
+            console.log(result)
+            return result
+          }
+        },
+        methods: {}
+      });
+    </script>
+</body>
+</html>

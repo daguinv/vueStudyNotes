@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <!-- Mustache语法（双大括号） 里面放简单的表达式 
+      当大括号里面的额表达式放入太多逻辑变会不好维护，此时使用计算属性
+    -->
+  	<div id="app">
+      <h2>{{message}}</h2>
+      <h2>{{message}}张文琼</h2>
+      <h2>{{firstName + lastName}}</h2>
+      <h2>{{firstName + ' ' + lastName}}</h2>
+      <h2>{{firstName}} {{lastName}}</h2>
+      <h2>{{counter * 2}}</h2>
+      <!-- 将变量拆成数组，翻转数组 ， 在拼成字符转 -->
+      <h2>{{reverse.split('').reverse().join('')}}</h2>
+    </div>
+  
+    <script src="../../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:'hello',
+          firstName:'Zhang',
+          lastName:'Wenqiong',
+          counter:100,
+          reverse:'将字符串翻转'
+        },
+        methods: {}
+      });
+    </script>
+</body>
+</html>

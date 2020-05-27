@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+      <h2>{{message}}</h2>
+      <!-- 
+        笔记：vue会根据数据的变化而视图自动的变化，但是，但我们某些需求不需要他跟随数据的变化而变化，只是第一次渲染上去就好了
+        这时候使用 v-once 指令。  注意 v-once只是一个简单的指令后面没有表达式
+        例子如下：
+       -->
+      <h2 v-once>{{message}}</h2>      
+    </div>
+  
+    <script src="../../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:'第一次渲染的数据'
+        },
+        methods: {}
+      });
+
+      app.message = "更新的数据"
+    </script>
+</body>
+</html>

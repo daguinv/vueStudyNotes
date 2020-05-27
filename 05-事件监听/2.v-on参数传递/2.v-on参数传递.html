@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+      <!-- 事件调用的方法没有参数   一下两种写法是一样的，可以省略小括号-->
+      <button @click="btn1Click">按钮1</button>
+      <button @click="btn1Click()">按钮1</button>
+
+
+      <!-- 在事件定义时省略小括号，但是在事件的调用方法中有一个参数，此时，Vue会将原生的js的Event事件对象传入到调用的参数中-->
+      <button @click="btn2Click">按钮2</button>
+      <!-- 没有省略小括号，传入的是undefined -->
+      <!-- <button @click="btn2Click()">按钮2</button> -->
+
+
+      <!-- 当定义方法时，我们需要event对象，还需要其他参数时
+      使用 $event  因为直接写event对当成对象，所以Vue规定当需要event对象时，固定的写法就是传入$evnet
+      参数顺序可以改变-->
+      <button @click="btn3Click($event,123)">按钮3</button>   
+
+
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+          btn1Click(){
+            console.log('btnOne'); 
+          },
+
+          btn2Click(event){
+            console.log('--btnTwo--',event.target); 
+          },
+          
+          btn3Click(evnet,a){
+            console.log('--btnThree--',evnet,a); 
+          },
+        }
+      });
+    </script>
+</body>
+</html>

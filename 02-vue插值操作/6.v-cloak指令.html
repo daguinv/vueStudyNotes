@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 属性选择器 */
+    [v-cloak]{
+      display: none
+    }
+  </style>
+</head>
+<body>
+  	<div id="app" v-cloak>{{message}}</div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      /*
+        HTML页面是自上而下运行的，如果当代码运行带18行卡住了，那么渲染到页面的就是{{message}} ，
+        当运行到vue实例生成是才会把{{message}}解析。所以就会出现闪一下
+        这是我么用到 v-cloak 指令
+        当还没有vue实例是标签带v-cloak属性，当生成vue后会自动的把v-cloak属性去掉。
+
+      */
+     setTimeout(() => {
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:'haha'
+        },
+        methods: {}
+      });
+     }, 1000);
+      
+    </script>
+</body>
+</html>

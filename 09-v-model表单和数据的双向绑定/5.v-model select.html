@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!--和CheckBox一样分单选和多选 -->
+  <div id="app">
+    <!-- 1.选择一个 -->
+    <select name="key" id="" v-model="fruit">
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="草莓">草莓</option>
+      <option value="榴莲">榴莲</option>
+    </select>
+    <h2>你选择的水果是{{fruit}}</h2>
+
+    <!-- 多选  加入multiple-->
+    <select name="key" id="" v-model="fruits" multiple>
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="草莓">草莓</option>
+      <option value="榴莲">榴莲</option>
+    </select>
+    <h2>你选择的水果是{{fruits}}</h2>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        fruit: '香蕉',
+        fruits:[],
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

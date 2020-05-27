@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 
+    笔记：
+    v-bind: 动态绑定属性值
+    例如：
+    img 和 a 标签
+    简写：：
+
+
+   -->
+  	<div id="app">
+      <img v-bind:src="imgUrl" alt="">
+      <a v-bind:href="aHref">{{message}}</a>
+
+      <img :src="imgUrl" alt="">
+      <a:href="aHref">{{message}}</a>
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:'百度一下',
+          imgUrl:'https://cn.vuejs.org/images/logo.png',
+          aHref:'https://www.baidu.com'
+        },
+        methods: {}
+      });
+    </script>
+</body>
+</html>

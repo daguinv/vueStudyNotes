@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    $parent直接返回父组件对象。
+    一般情况下我们不使用$parent,因为这样是组件的复用性不高。
+    $root 直接返回根组件
+   -->
+  <div id="app">
+    <cpn></cpn>
+  </div>
+
+  <template id="cpn">
+    <ccpn></ccpn>
+  </template>
+
+  <template id="ccpn">
+    <div>
+      <h2>我是子组件</h2>
+      <button @click="btnClick">按钮</button>
+    </div>
+  </template>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      components: {
+        cpn: {
+          template: '#cpn',
+          data(){
+            return{
+              name:'我是cpn的name'
+            }
+          },
+          components: {
+            ccpn: {
+              template: '#ccpn',
+              methods: {
+                btnClick() {
+                  console.log(this.$parent);
+                  console.log(this.$parent.name)
+                  console.log(this.$root);
+                  
+                }
+              },
+            }
+          }
+        },
+
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        {{message}}
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        //先头原生js使用的是命令式编程
+        //面向对象编程（第一公民：对象） 函数式编程（第一公民：函数）
+        // Vue编程范式：声明式编程
+        const app = new Vue({
+            el:'#app',  //用于挂在要管理的元素
+            data:{      //定义数据
+                message:'你好啊,vue'
+            }
+
+        })
+        // html和js分离，不需要获取dom元素
+
+
+        //在原生js中的做法  编程范式：命令式编程
+        // 1.获取dom元素
+        // 2.dom.innerhtml = 变量
+        // 3.当修改变量时，该需要修改的数据替换到div元素
+    
+    </script>
+</body>
+</html>

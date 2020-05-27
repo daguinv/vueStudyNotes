@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">{{fullName}}</div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          fitstName:'Zhang',
+          lastName:'WenQing'
+        },
+        methods: {},
+        /*
+        笔记：其实计算属性里面写函数是一个简写的方式
+        其实是一个属性对象，里面有get方法和set方法，一般我们只用get方法，不用set方法，因为不要轻易随便改变数据
+        */
+        computed:{
+          fullName:{
+            set(newValue){
+              console.log(newValue);
+              const arr = newValue.split(" ");
+              this.fitstName = arr[0];
+              this.lastName = arr[1]
+            },
+            get(){
+              return this.fitstName +" " + this.lastName
+            }
+          }
+        }
+        // computed:{
+        //   fullName(){
+        //     return this.fitstName + this.lastName
+        //   }
+        // }
+      });
+    </script>
+</body>
+</html>

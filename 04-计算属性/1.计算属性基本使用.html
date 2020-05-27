@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+   	<div id="app">
+       <h2 >{{fullName}}</h2>
+     </div>
+   
+     <script src="../vue.js"></script>
+     <script>
+      //计算属性：当使用{{}}里面的表达式过于复杂时,可以使用方法，但是使用方法好需要使用（）执行 
+      //在这里使用计算属性不用执行，直接把处理好的直接当在大括号里面就可以
+
+       const app = new Vue({
+         el: '#app',
+         data: {
+            firstName:'Zhang',
+            lastName:'Wenqiong',
+         },
+         computed:{
+          //  computed里面是函数但是定义的是属性
+           fullName(){
+             return this.firstName + " " +this.lastName
+           }
+         },
+         methods: {}
+       });
+     </script>
+</body>
+</html>

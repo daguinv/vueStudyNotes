@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+<!-- 阻止事件冒泡修饰符  .stop -->
+    <!-- 当点击按钮，会事件冒泡到div上 -->
+    <div @click="clickDiv" :style="divStyle()">
+      <button @click="clickBtn">按钮</button>
+    </div>
+
+    <!-- 阻止冒泡    在当前元素上的事件后加修饰符-->
+    <div @click="clickDiv" :style="divStyle()">
+        <button @click.stop="clickBtn">按钮</button>
+    </div>
+    
+    <br>
+<!-- 阻止默认行为修饰符 .prevent -->
+    
+    <!--当点击按钮会自动向后台发送数据，但是我们想触发按钮后自己来向后台发送数据（自己控制）  -->
+    <form action="baidu">
+      <input @click="submitInput" type="submit" value="提交">
+    </form>
+
+    <form action="baidu">
+        <input @click.prevent="submitInput" type="submit" value="提交">
+    </form>
+    
+    <br>
+
+<!-- 串联修饰符 @click.stop.prevent
+-->
+
+<!-- 点击特定的键盘按键才触发   只有当点击回车时才触发函数-->
+  <input @keyUp.enter="keyUp" type="text">
+
+<button @click.once="clickBtn">点击只触发一次</button>
+  </div>
+
+
+
+  <script src="../../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        clickDiv(){
+          console.log('clickDiv');
+          
+        },
+        clickBtn(){
+          console.log('clickBtn');
+          
+        },
+        divStyle(){
+          return {
+            width: 100 + 'px',
+            height: 100 + 'px',
+            backgroundColor:'#abcdef'
+          }
+        },
+        submitInput(){
+          console.log('提交操作');
+          
+        },
+        keyUp(){
+          console.log('enter');
+          
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

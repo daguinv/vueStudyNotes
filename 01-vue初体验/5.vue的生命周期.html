@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+
+            },
+            //Vue的生命周期。new Vue 后内部作了一系列事情。
+            //当你在new Vue执行到某个阶段会自动回调对应的函数做你需要作的事情
+            //也叫钩子函数（hook） 也是回调的意思
+            beforeCreate(){
+                console.log('初始化之前调用');
+            },
+            created(){  //一般我们会在created做一些网络请求，将请求回来的数据放在data里面，将data里面的数据渲染在页面上
+                console.log('初始化之后调用');
+            },
+            mounted(){
+                console.log("mouted");
+            }
+            
+
+        })
+    </script>
+</body>
+</html>

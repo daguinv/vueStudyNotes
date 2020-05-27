@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active{
+      background-color: black;
+      color: #fff;
+    }
+    .line{
+      background: red;
+      color: black
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    笔记：当一些固定不变的类型可是使用原先的方式
+          当一些会变的class类型使用 v-bind 。
+   -->
+  	<div id="app">
+      <!-- <h1 class="active">没有使用vue绑定class</h1> -->
+      <!-- <h1 v-bind:class="active">{{message}}</h1> -->
+
+      <!-- 使用vind动态绑定class（对象语法） -->
+      <!-- <h1 v-bind:class="{类名1：布尔值(变量)，类名2：布尔值（变量）}">{{message}}</h1> -->
+      <!-- <h1 v-bind:class="{active:true,line:false}">{{message}}</h1> -->
+      
+      <!-- <h1 v-bind:class="{active:isActive,line:isLine}">{{message}}</h1> -->
+      <!--如果对象的类名过长，可以使用methods 或者计算属性（computed）中  -->
+<!-- 使用方法获取动态class -->
+      <h1 v-bind:class="getClasses()">{{message}}</h1>
+      
+      <button v-on:click="btnClick">点击</button>
+
+      <!-- 点击按钮，class切换 -->
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:'动态绑定class属性',
+          isActive:true,
+          isLine:false
+        },
+        methods: {
+          btnClick(){
+            // 点击一次有class。在点击没有class
+            //把当前的值取反
+            this.isActive = !this.isActive;
+            this.isLine = !this.isLine
+          },
+          getClasses(){
+            return {active:this.isActive,line:this.isLine}
+          }
+        }
+      });
+    </script>
+</body>
+</html>

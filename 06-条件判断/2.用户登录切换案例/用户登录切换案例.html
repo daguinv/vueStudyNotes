@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    案例：用户登录时，可以切换使用用户账号登录还是邮箱地址登录
+   -->
+  <div id="app">
+    <span v-if="logintype">
+      <label for="user">账户登录</label>
+      <!-- 使用key属性，唯一标识，使元素不会复用 -->
+      <input id="user" type="text" placeholder="请输入账号" key="user">
+    </span>
+    <span v-else>
+      <label for="email">邮箱登录</label>
+      <input id="email" type="email" placeholder="请输入邮箱" key="email">
+    </span>
+    <!-- <button @click="change">切换类型</button> -->
+    <button @click="logintype = !logintype">切换类型</button>
+  </div>
+
+  <script src="../../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        logintype: true
+      },
+      methods: {
+        change() {
+          this.logintype = !this.logintype
+        }
+      },
+      computed: {
+
+      }
+    });
+  </script>
+</body>
+
+</html>

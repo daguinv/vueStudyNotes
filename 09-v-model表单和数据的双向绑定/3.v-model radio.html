@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+<!-- 
+当v-model绑定同一个变量时，两者是互斥的。可以不用写name来解决互斥问题
+使用v-model动态绑定变量，当value值改变时，变量也会发生变化，将用户选择的值赋值变量传递给后台
+ -->
+      <label for="male">
+          <input type="radio" id="male" value="男" v-model="sex">男
+      </label>
+      
+      <label for="female">
+          <input type="radio" id="female" value="女" v-model="sex">女
+      </label>
+      <h2>你选择的性别是{{sex}}</h2>
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          sex:undefined,
+        },
+        methods: {}
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+      <!-- 
+        v-if ：当为false，根本不会存在dom中，true:会创建dom
+        v-show: false只是给元素增加行内样式display：none。 true：disply:block
+
+
+        当需要在显示与切换之间切换频繁时，使用v-show
+        当只有一次切换时，通常使用 v-if  (在项目中通常使用v-if居多)
+       -->
+      <h2 v-if="isShow" id="aaa">{{message}}</h2>
+      <h2 v-show="isShow" id="bbb">{{message}}</h2>
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:"hello你好呀",
+          isShow:true
+        },
+        methods: {}
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="app">
+            当前计数{{number}}
+            <!-- <button @click="number++">+</button>
+        <button @click='number--'>-</button> -->
+            <!-- 
+                @click语法糖   --》 v-on:click=''的简化
+             -->
+            <button @click="add">+</button>
+            <button @click="reduce">-</button>
+        </div>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        console.log(document.querySelector('.wrapper .app'));
+        // querySelector() 方法仅仅返回匹配指定选择器的第一个元素
+        const app = new Vue({
+            el: document.querySelector('.app'),
+            data: {
+                number: 0,
+            },
+            methods: {
+                add() {
+                    this.number++;  //proxy 代理。后面学习。为什么直接可以this.number
+                    console.log('+' + this.number)
+                    //快捷console.log -->   log  回车
+                },
+                reduce() {
+                    this.number--;
+                    console.log('-' + this.number)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

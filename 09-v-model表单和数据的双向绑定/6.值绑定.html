@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    值绑定：就是动态给value赋值
+    先头我们的value都是在input的时候直接定义死的。
+    但是真实开发中，这些input的值可能是从服务器获取放在data里
+    所以我们可以通过v-bind：value动态的给value绑定值
+   -->
+  	<div id="app">
+      <label v-for="item in checkHobby" :for="item">
+        <input type="checkbox" :name="item" :id="item" :value="item" v-model="hobbies">{{item}}
+      </label>
+      <h2>{{hobbies}}</h2>
+
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          hobbies:[],
+          checkHobby:["篮球","足球","乒乓球","羽毛球","高尔夫球"],
+        },
+        methods: {}
+      });
+    </script>
+</body>
+</html>

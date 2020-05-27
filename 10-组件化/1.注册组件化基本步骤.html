@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+      <!-- 3.使用组件 -->
+        <my-component></my-component>
+        <my-component></my-component>
+        <div style="background-color: darkcyan">
+            <my-component></my-component>
+        </div>
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      // 下面注册是全局组件
+
+      // 1.创建组件构造器对象   
+      // 在创建组件构造器时，参数是一个对象，对象里有一个template属性代表我们自定义组件的模板
+      // 事实上，这种写法在Vue2.x的文档中几乎已经但不到了，他会直接使用语法糖，但是本质上源码还是使用这种方式
+      const componentConstrucor = Vue.extend({
+        template:`
+        <div>
+          <h2>我是标题</h2>
+          <p>我是内容</p>
+          <p>我是内容</p>
+        </div>`
+      })
+
+      // 2.注册组件
+      // 调用Vue.component()是将刚才的组件构造器注册为一个组件，并给他起一个组件的标签名称
+      // 两个参数：注册组件的标签名，2.组件构造器
+      Vue.component('my-component',componentConstrucor)
+
+
+      const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {}
+      });
+    </script>
+</body>
+</html>

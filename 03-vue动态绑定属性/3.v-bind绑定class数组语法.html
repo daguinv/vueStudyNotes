@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+      <!-- 在数组中放入变量 变量里面是class类名 -->
+      <!-- <h1 class="title" :class="[active,line]">使用数组绑定class</h1> -->
+      <h1 class="title" :class="getClasses()">使用数组绑定class</h1>
+      
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          active:'aaa',
+          line:'bbb'
+        },
+        methods: {
+          getClasses(){
+            return [this.active,this.line];
+          }
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  	<div id="app">
+      <!-- 将data里面的变量通过v-bind绑定在zmovies属性里面进行赋值 -->
+      <cpn :zmovies="movies" :zmessage="message"></cpn>
+      <cpn :zmovies="movies" ></cpn>
+      <cpn></cpn>
+      
+    </div>
+    
+    <template id="cpn">
+      <div>
+        <p>下面是来自爸爸的信息：</p>
+        <ul >
+          <li v-for="item in zmovies">{{item}}</li>
+        </ul>  
+        <h2>{{zmessage}}</h2>
+      </div>
+    </template>
+
+    <script src="../vue.js"></script>
+    <script>
+      const cpn = {
+        template:'#cpn',
+        // 父组件向子组件传递使用props(属性的意思) props可以的值可以数组可以是对象
+        // 将通过v-bind绑定的属性（变量）放在数组中，（这里用用引号括起来）
+        // 此时我们在zmovies变量就保存这movies里面的数据。
+        // props:['zmovies','zmessage'],
+
+        // 使用对象的写法 写法一：指定变量类型，当不是规定类型会报错
+        // props:{
+        //   zmovies:Array,
+        //   zmessage:[Array,String] //当值是多种类型时，可以使用数组包起来
+        // },
+
+        // 写法二  当有多个添加添加对象进行设置，default设置默认值，当没有给子组件传递值时使用默认值
+        // props:{
+        //   zmovies:{
+        //     type:Array,
+        //     // 当默认值是数组或者对象类型时，必须使用函数来返回默认值，否则会报错
+        //     // default:['a','b']
+            
+        //     default(){
+        //       return ['a','b'];
+        //     }
+        //   },
+        //   zmessage:{
+        //     type:[Array,String],   
+        //     // default:'我是默认值',
+        //     // required 属性，必传值，当组件没有当前属性会报错
+        //     required:true
+        //   }
+        // },
+          props:{
+            zmovies:{
+              // 自定义验证函数
+              // validator(value){
+              //   return ['success','Array','danger'].indexOf(value) !== -1
+              // }
+              // 也可以自定义类型，不使用系统的Number array 可以使用我们自己定义的类型
+            },
+            zmessage:{
+              validator(value){
+                return value > 10
+              }
+            }
+          },
+          data(){
+            return {}
+          },
+          methods:{
+
+          }
+        }
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+          movies:['美丽人生','海上钢琴师','小猪佩奇'],
+          message:20
+        },
+        methods: {},
+        components:{
+          cpn
+        }
+      });
+    </script>
+</body>
+</html>

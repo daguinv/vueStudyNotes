@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 
+    1.插槽的基本使用<slot></slot>  组件里面放的元素作为插槽里面的元素
+    2.插槽的默认值<slot><button></button></slot> 如果组件里面没有放入元素，那么直接使用插槽的默认值
+   -->
+  	<div id="app">
+      <cpn><h1 style="background: red">我是h1</h1></cpn>
+      <cpn><i>我是i</i></cpn>
+      <cpn>
+        <div>哈哈哈</div>
+        <strong>我是strong</strong>
+      </cpn>
+      
+    </div>
+  
+    <template id="cpn">
+      <div>
+        <h2>我是组件</h2>
+        <p>我是组件哈哈哈</p>
+        <!-- 在这里直接写上预留的插槽 -->
+        <slot><button>按钮</button></slot>
+      </div>
+    </template>
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:'你好啊'
+        },
+        components: {
+          cpn:{
+            template:'#cpn'
+          }
+        }
+      });
+    </script>
+</body>
+</html>

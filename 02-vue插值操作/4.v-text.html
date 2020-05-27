@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    笔记：v-text和Mustache双大阔华的语法类似，都是将数据显示在界面中
+    通常接收String类型
+    缺点：不够灵活，不能进行拼接，如果元素里面有文本会都覆盖成 v-text 里面的内容
+
+   -->
+  	<div id="app">
+      <h2>{{message}}，你好</h2>
+      <h2 v-text="message"></h2>
+      <h2 v-text="message">，你好</h2>
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message:'zwq'
+        },
+        methods: {}
+      });
+    </script>
+</body>
+</html>

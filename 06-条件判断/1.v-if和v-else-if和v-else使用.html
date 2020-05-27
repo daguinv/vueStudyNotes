@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    v-if里面放变量(布尔值)
+    当逻辑判断长的例如下面的判断，最好不使用下面的方法，使用计算属性computed
+   -->
+  	<div id="app">
+      <h1 v-if="score >= 90">优秀</h1>
+      <h1 v-else-if="score >= 80">良好</h1>
+      <h1 v-else-if="score >= 60">及格</h1>
+      <h1 v-else>不及格</h1>
+
+      <h1>{{result}}</h1>
+    </div>
+  
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          score:99
+        },
+        methods: {},
+        computed:{
+          result(){
+            let message = '';
+            if(this.score >= 90){
+              message = '优秀';
+            }else if(this.score >= 80){
+              message = '良好'
+            }else if(this.score >=60){
+              message = '及格'
+            }else{
+              message = '不及格'
+            }
+            return message
+          }
+        }
+      });
+    </script>
+</body>
+</html>
