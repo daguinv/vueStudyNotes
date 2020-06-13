@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+
+<script src="../vue.js"></script>
+
+</head>
+
+<body>
+
+   <div id="app">
+     <cpn :number1="num1" :number2="num2" @father-cpn="changeInput" @father-cpn2="changeInput2"></cpn>
+   </div>
+
+
+   <template id="cpn">
+     <!-- 组件模板必须有一个根 -->
+     <!-- 需求：通过input绑定v-model双向绑定改变number1同时父组件的num也在变 -->
+    <div>
+      <!-- 在这里直接绑定props里面的属性会报错。因为props只负责进行父子传递值 ，我们应该通过改变父组件的值改变间接改变子组件的值-->
+      <input type="text" :value="dNumber1" @input="changeInput">
+      <h2>props:{{number1}}</h2>
+      <h2>子组件的data:{{dNumber1}}</h2>
+
+      <input type="text" :value="dNumber2" @input="changeInput2">
+      <h2>props:{{number2}}</h2>
+      <h2>子组件的data:{{dNumber2}}</h2>
+    </div>
+
+   </template>
+
+   <script>
+
+    var app = new Vue({
+      el : '#app',
+      data : {
+        num1:1,
+        num2:2
+      },
+      components:{
+        // 子组件
+        cpn:{
+          template:'#cpn',
+          props:{
+            number1:Number,
+            number2:Number
+          },
+          data(){
+            return {
+              dNumber1:this.number1,
+              dNumber2:this.number2
+            }
+          },
+          methods:{
+            changeInput(event){
+              // 1.将input值赋值给dnumber
+              this.dNumber1 = event.target.value;
+              // 2.发出自定义事件让父组件可以修改
+              this.$emit('father-cpn',this.dNumber1)
+              //3.同时修改dnumber2值
+              this.dNumber2 = this.dNumber1 * 100
+              this.$emit('father-cpn2',this.dNumber2)
+            },
+            changeInput2(event){
+              this.dNumber2 = event.target.value;
+              this.$emit('father-cpn2',this.dNumber2)
+              this.dNumber1 = this.dNumber1 / 100
+              this.$emit('father-cpn',this.dNumber1)
+            }
+          }
+        }
+      },
+      methods:{
+        changeInput(value){
+          this.num1 = Number(value)
+        },
+        changeInput2(value){
+          this.num2 = Number(value)
+          // this.num2 = this.num1 * 100
+        },
+      }
+    }) 
+
+   </script>
+
+</body>
+
+</html>
